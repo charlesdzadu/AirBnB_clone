@@ -7,6 +7,13 @@ import cmd
 from shlex import split
 import re
 from models import storage
+from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.city import City
+from models.place import Place
+from models.amenity import Amenity
+from models.review import Review
 
 
 def parse_arguments(args):
@@ -103,6 +110,7 @@ class HBNBCommand(cmd.Cmd):
             kwargs = {}
 
             for i in range(1, len(cmd_list)):
+                print('this not execute')
                 key, value = cmd_list[i].split("=")
                 if value[0] == '"' and value[-1] == '"':
                     value = value.strip('"').replace('_', ' ')
@@ -112,7 +120,6 @@ class HBNBCommand(cmd.Cmd):
                     except (SyntaxError, NameError):
                         continue
                 kwargs[key] = value
-
             if kwargs == {}:
                 obj = eval(cmd_list[0])()
             else:

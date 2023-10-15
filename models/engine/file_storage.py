@@ -73,7 +73,7 @@ class FileStorage:
         try:
             with open(self.__file_path, "r", encoding="utf-8") as f:
                 tmp_dict = json.loads(f.read())
-                for objs in tmp_dict.items():
+                for objs in tmp_dict.values():
                     cls_key = objs["__class__"]
                     cls_name = self.class_map()[cls_key]
                     self.new(cls_name(**objs))
